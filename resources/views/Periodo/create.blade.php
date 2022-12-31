@@ -48,7 +48,7 @@
             type="text"
             name="descripcion"
             placeholder="Descripcion"
-            required
+            
           />
          
           <div>

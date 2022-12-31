@@ -81,7 +81,7 @@
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                   <a
-                    href="index.html"
+                    href="{{route('login') }}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700"
                   >
@@ -219,7 +219,7 @@
                   </a>
                   
                   <a
-                    href="pages/blank.html"
+                    href="{{route('login') }}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
@@ -282,7 +282,7 @@
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                   <a
-                    href="auth/register.html"
+                    href="{{route('user.index') }}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
@@ -547,7 +547,7 @@
                     </a> --}}
                     
                     <a
-                      href="#"
+                      href="{{route('login') }}"
                       role="menuitem"
                       class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary"
                     >

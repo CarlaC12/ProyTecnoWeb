@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeriodoController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,25 @@ use App\Http\Controllers\PeriodoController;
 
 Route::get('/', function () {
     return view('pagina');
-});
+})->middleware('auth');
 
+
+/*Route::get('/', function () {
+    return view('auth.login');
+});*/
+
+//Route::view('dashboard', 'pagina')->name('dashboard')->middleware('auth');
+Route::view('login', 'auth.login')->name('login');
+
+Route::post('login', function(){
+    $credencial=  request()->only('email', 'password');
+    if (Auth::attempt($credencial)){
+        request()->session()->regenerate();
+        return redirect('/');
+    }
+    return redirect()->route('login');
+});
 
 Route::resource('periodo',PeriodoController::class)->names('periodo');
 
+Route::resource('user',UserController::class)->names('user');

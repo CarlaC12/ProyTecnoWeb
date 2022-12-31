@@ -68,9 +68,11 @@ class PeriodoController extends Controller
   
     public function destroy($id)
     {
-        $periodo=Periodo::findOrfail($id);
+       /* $periodo=Periodo::findOrfail($id);
         $periodo->estado=0;
-        $periodo->save();
+        $periodo->save();*/
+        $periodo=Periodo::findOrfail($id);
+        $periodo->delete();
         return redirect()->route('periodo.index');
     }
 }
