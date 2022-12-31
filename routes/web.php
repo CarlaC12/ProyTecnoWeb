@@ -43,7 +43,6 @@ Route::post('login', function(){
 Route::resource('periodo',PeriodoController::class)->names('periodo');
 
 Route::resource('user',UserController::class)->names('user');
-});
 
 
 Route::resource('periodo',PeriodoController::class)->names('periodo');
