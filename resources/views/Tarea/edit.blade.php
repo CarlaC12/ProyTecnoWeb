@@ -6,15 +6,15 @@
  <br> <br>
    <div class=" flex justify-center items-center">
     <div class="max-w-lg px-4 py-6  bg-white rounded-md dark:bg-darker ">
-        <h1 class="text-xl font-semibold text-center">Registrar Periodo</h1>
-        <form action="{{ route('periodo.store') }}" class="space-y-6 " method="POST" novalidate  enctype="multipart/form-data">
+        <h1 class="text-xl font-semibold text-center">Editar Tarea</h1>
+        <form action="{{ route('editarTarea',array($tarea->id,$actividad->id)) }}" class="space-y-6 " method="POST" novalidate  enctype="multipart/form-data">
             @csrf
             @method('POST')
           <input
             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
             type="text"
-            name="nombre"
-            placeholder="1-2020"
+            name="name"
+            value="{{old('name',$tarea->name)}}"
             required
           />
           @error('nombre')
@@ -23,41 +23,31 @@
           @enderror
           <input
             class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
-            type="date"
-            name="finicio"
-            placeholder="Fecha Inicio"
-            required
-          />
-          @error('finicio')
-          <small class="text-danger" style="color: red">*{{ $message }}</small>
-          <br>
-          @enderror
-          <input
-            class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
-            type="date"
-            name="ffin"
-            placeholder="Fecha Fin"
-            required
-          />
-          @error('ffin')
-          <small class="text-danger" style="color: red">*{{ $message }}</small>
-          <br>
-          @enderror
-          <input
-            class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
             type="text"
-            name="descripcion"
-            placeholder="Descripcion"
-            
+            name="description"
+            value="{{old('description',$tarea->description)}}"
             required
           />
-         
+          @error('descripcion')
+          <small class="text-danger" style="color: red">*{{ $message }}</small>
+          <br>
+          @enderror
+
+          <br>
+          <label for="Estado" class="control-label">Estado</label>
+           <select class="form-select" name="id_status" aria-label="Default select example">
+               {{-- <option selected>Selecciona la apunte del apunte</option> --}}
+               @foreach ($statuses as $status)
+                   <option value="{{ $status->id }}">{{ $status->name }}</option>
+                @endforeach
+          </select>
+
           <div>
             <button
               type="submit"
               class="w-full px-4 py-2 font-medium text-center text-white transition-colors duration-200 rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 dark:focus:ring-offset-darker"
             >
-              Registrar
+              Guardar
             </button>
           </div>
         </form>

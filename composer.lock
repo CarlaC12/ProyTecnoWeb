@@ -2863,6 +2863,7 @@
             "time": "2022-12-19T22:30:49+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "spatie/laravel-permission",
             "version": "5.7.0",
             "source": {
@@ -2945,6 +2946,8 @@
             "time": "2022-11-23T07:01:37+00:00"
         },
         {
+=======
+>>>>>>> b43e70d71a90c0a9c8330c41aa6d7593d3b18f0f
             "name": "swiftmailer/swiftmailer",
             "version": "v6.3.0",
             "source": {

@@ -185,7 +185,7 @@
                       />
                     </svg>
                   </span>
-                  <span class="ml-2 text-sm"> Cup </span>
+                  <span class="ml-2 text-sm"> CUP </span>
                   <span aria-hidden="true" class="ml-auto">
                     <!-- active class 'rotate-180' -->
                     <svg
@@ -204,14 +204,14 @@
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                   <a
-                    href="pages/blank.html"
+                    href="{{route('DocActividad.view')}}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
                     Gestionar Documento
                   </a>
                   <a
-                    href="pages/blank.html"
+                    href="{{route('actividad.view')}}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
@@ -219,7 +219,7 @@
                   </a>
                   
                   <a
-                    href="{{route('login') }}"
+                    href="{{route('TareaActividad.view')}}"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
