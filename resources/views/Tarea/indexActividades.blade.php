@@ -39,7 +39,7 @@
                                  @endphp
                                   @foreach ($encargados as $encargado)
                                     @php
-                                        $encargado2=$encargado->name;
+                                        $encargado2=$encargado->fullname;
                                     @endphp
                                   @endforeach
 

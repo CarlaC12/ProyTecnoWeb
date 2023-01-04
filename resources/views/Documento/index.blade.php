@@ -5,18 +5,18 @@
 @section('contenido')
     <br> <br>
 
-    <div class="container px-6 mb-3">    
+    <div class="container px-6 mb-3">
         <div class="mt-5">
-           <button class="rounded-lg bg-light shadow btn-md ">
-            <a href="{{ route('crearDocumento.view',$actividad->id) }}" >
-                <span>
-                    <i class="fa fa-plus " style="color: #fa1808"></i>
-                </span>
-                &nbsp;
-                Agregar
-            </a>
-                
-               </button>
+            <button class="rounded-lg bg-light shadow btn-md ">
+                <a href="{{ route('crearDocumento.view', $actividad->id) }}">
+                    <span>
+                        <i class="fa fa-plus " style="color: #fa1808"></i>
+                    </span>
+                    &nbsp;
+                    Agregar
+                </a>
+
+            </button>
 
             <div class="overflow-x-auto relative  sm:rounded-lg  ">
 
@@ -32,33 +32,33 @@
                             $i = 1;
                         @endphp
                         @foreach ($documentos as $documento)
-                         @if ($documento->estado==1)
-                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td data-label="nombre">{{$documento->name}}</td>
-                            <td data-label="url">
-                                <a href="{{ asset('/storage/' . $documento->url) }}">
-                                    Archivo...
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ route('eliminarDocumento',array($documento->id,$actividad->id)) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-
-                                    <a href="{{ route('editarDocumento.view',array($documento->id,$actividad->id)) }}" 
-                                        class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
-
-                                    {{-- <a href="" class="btn btn-warning btn-sm fas fa-eye  cursor-pointer"></a> --}}
-
-                                    <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
-                                        onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"></button>
-
-                                </form>
-
-                            </td>
-                        </tr> 
-                         @endif
+                            @if ($documento->estado == 1)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td data-label="nombre">{{ $documento->name }}</td>
+                                    <td data-label="url">
+                                        <a href="{{ asset('/storage/' . $documento->url) }}">
+                                            Archivo...
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @can('editarDocumento.view')
+                                            <a href="{{ route('editarDocumento.view', [$documento->id, $actividad->id]) }}"
+                                                class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                        @endcan
+                                        @can('eliminarDocumento')
+                                            <form action="{{ route('eliminarDocumento', [$documento->id, $actividad->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
+                                                    onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')"
+                                                    value="Borrar"></button>
+                                            </form>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
 
                     </tbody>

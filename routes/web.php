@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\GraficaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +42,10 @@ Route::post('login', function(){
 });
 
 Route::resource('periodo',PeriodoController::class)->names('periodo');
-
 Route::resource('user',UserController::class)->names('user');
+Route::get('editaruser',[UserController::class,'editaruser'])->name('editaruser');
+Route::get('grafica',[GraficaController::class, 'grafica'])->name('grafica');
 
-
-Route::resource('periodo',PeriodoController::class)->names('periodo');
 
 //----Gestionar Actividad-------
 

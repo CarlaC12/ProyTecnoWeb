@@ -78,7 +78,7 @@
           <select class="form-select" name="id_user" aria-label="Default select example">
                 {{-- <option selected>Selecciona la apunte del apunte</option> --}}
                 @foreach ($usuarios as $usuario)
-                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                    <option value="{{ $usuario->id }}">{{ $usuario->fullname }}</option>
                  @endforeach
            </select>
            <br>

@@ -1,33 +1,34 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="{{ asset('librerias/morris.js/morris.css') }}">
 
-    <script src="{{ asset('librerias/morris.js/jquery.min.js') }}"></script>
-    <script src="{{ asset('librerias/morris.js/raphael-min.js') }}"></script>
-    <script src="{{ asset('librerias/morris.js/morris.min.js') }}"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <title>Gráfica</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-6">
-                <h2 class="text-center">Gráfica total Documentos </h2>
+                <h2 class="text-center">Gráfica total Usuarios </h2>
                 <hr>
                 <div id="donut-chart" style="height: 350px;" class="bg-white  shadow"></div>
             </div>
 
             <div class="col-md-6">
-                <h2 class="text-center">Gráfica Documentos Insertados </h2>
+                <h2 class="text-center">Gráfica Actividades Realizadas por Periodo </h2>
                 <hr>
-                <div id="bar-chart" style="height: 350px; " class="bg-white  shadow"></div>
-
-            </div>
+                <div id="barra" style="height: 350px; " class="bg-white  shadow"></div>
+            
+           </div>
         </div>
     </div>
 
@@ -65,42 +66,19 @@
     }
 </style>
 
-</html>
-<script>
-    // Use Morris.Bar
-    Morris.Bar({
-        element: 'bar-chart',
-        data: [
-
-            <?php
-            foreach ($total as $clave => $valor) {
-                echo "{x: '" . $users[$clave] . "',y: " . $valor . '},';
-            }
-            ?>
-        ],
-        xkey: 'x',
-        ykeys: ['y'],
-        labels: ['Total Doc.Insertados'],
-        barColors: function(row, series, type) {
-            if (type === 'bar') {
-                var red = Math.ceil(255 * row.y / this.ymax);
-                return 'rgb(' + red + ',0,0)';
-            } else {
-                return '#000';
-            }
-        }
-    });
-</script>
 <script>
     Morris.Donut({
         element: 'donut-chart',
         data: [
+
             <?php
             
-            foreach ($Count as $clave => $valor) {
-                echo '{ value: ' . $valor . ", label: '" . $array[$clave] . "', },";
+            foreach ($newarray as $i => $valor) {
+                echo '{ value: ' . $valor . ", label: '" . $arrayN[$i - 1] . "', },";
             }
+            
             ?>
+
         ],
 
         backgroundColor: '#ccc',
@@ -113,9 +91,36 @@
             '#FF9333'
         ],
         formatter: function(x) {
-            return x + "Documentos"
+            return x + "Usuarios"
         }
     }).on('click', function(i, row) {
         console.log(i, row);
     });
-</script> --}}
+</script>
+<script>
+   // Use Morris.Bar
+   Morris.Bar({
+       element: 'barra',
+       data: [
+
+           <?php
+           foreach ($newarray2 as $clave => $valor) {
+               echo "{x: '" . $aryper[$clave-1] . "',y: " . $valor . '},';
+           }
+           ?>
+       ],
+       xkey: 'x',
+       ykeys: ['y'],
+       labels: ['actividades'],
+       barColors: function(row, series, type) {
+           if (type === 'bar') {
+               var red = Math.ceil(255 * row.y / this.ymax);
+               return 'rgb(' + red + ',0,0)';
+           } else {
+               return '#000';
+           }
+       }
+   });
+</script>
+
+</html>

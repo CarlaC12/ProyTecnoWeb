@@ -51,19 +51,19 @@
                                 {{$estado_nombre}}
                             </td>
                             <td>
+                                @can('updeditarTarea.view')
+                                <a href="{{ route('editarTarea.view',array($tarea->id,$actividad->id)) }}" 
+                                    class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                    
+                                @endcan
+                                @can('eliminarTarea')
                                 <form action="{{ route('eliminarTarea',array($tarea->id,$actividad->id)) }}" method="post">
                                     @csrf
                                     @method('delete')
-
-                                    <a href="{{ route('editarTarea.view',array($tarea->id,$actividad->id)) }}" 
-                                        class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
-
-                                    {{-- <a href="" class="btn btn-warning btn-sm fas fa-eye  cursor-pointer"></a> --}}
-
                                     <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
                                         onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"></button>
-
                                 </form>
+                                @endcan
 
                             </td>
                         </tr> 
@@ -84,5 +84,5 @@
 @stop
 
 @section('js')
-
+ 
 @stop

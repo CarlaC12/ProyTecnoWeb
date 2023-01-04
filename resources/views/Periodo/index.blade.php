@@ -3,20 +3,23 @@
 @section('titulo', 'Inicio')
 
 @section('contenido')
-    <br> <br>
+    <br>
+    <h1 style="color: blue " class="text-center font-bold">REGISTROS DE PERIODO</h1><br>
 
-    <div class="container px-6 mb-3">    
+    <div class="container px-6 mb-3">
         <div class="mt-5">
-           <button class="rounded-lg bg-light shadow btn-md ">
-            <a href="{{ route('periodo.create') }}" >
-                <span>
-                    <i class="fa fa-plus " style="color: #fa1808"></i>
-                </span>
-                &nbsp;
-                Agregar
-            </a>
-                
-               </button>
+            @can('periodo.create')
+                <button class="rounded-lg bg-light shadow btn-md ">
+                    <a href="{{ route('periodo.create') }}">
+                        <span>
+                            <i class="fa fa-plus " style="color: #fa1808"></i>
+                        </span>
+                        &nbsp;
+                        Agregar
+                    </a>
+
+                </button>
+            @endcan
 
             <div class="overflow-x-auto relative  sm:rounded-lg  ">
 
@@ -34,31 +37,32 @@
                             $i = 1;
                         @endphp
                         @foreach ($periodos as $periodo)
-                         @if ($periodo->estado==1)
-                         <tr>
-                            <td>{{ $i++ }}</td>
-                            <td data-label="nombre">{{$periodo->nombre}}</td>
-                            <td data-label="finicio">{{$periodo->finicio}}</td>
-                            <td data-label="ffin">{{$periodo->ffin}}</td>
-                            <td data-label="descripcion">{{$periodo->descripcion}}</td>
-                            <td>
-                                <form action="{{ route('periodo.destroy',$periodo->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
+                            @if ($periodo->estado == 1)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td data-label="nombre">{{ $periodo->nombre }}</td>
+                                    <td data-label="finicio">{{ $periodo->finicio }}</td>
+                                    <td data-label="ffin">{{ $periodo->ffin }}</td>
+                                    <td data-label="descripcion">{{ $periodo->descripcion }}</td>
+                                    <td>
+                                        @can('periodo.edit')
+                                        <a href="{{ route('periodo.edit', $periodo->id) }}"
+                                            class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                        @endcan
+                                        @can('periodo.destroy')
+                                            <form action="{{ route('periodo.destroy', $periodo->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
 
-                                    <a href="{{ route('periodo.edit',$periodo->id) }}" class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                                <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
+                                                    onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')"
+                                                    value="Borrar"></button>
+                                            </form>
+                                        @endcan
 
-                                    {{-- <a href="" class="btn btn-warning btn-sm fas fa-eye  cursor-pointer"></a> --}}
-
-                                    <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
-                                        onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"></button>
-
-                                </form>
-
-                            </td>
-                        </tr> 
-                         @endif
-                            
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
 
                     </tbody>

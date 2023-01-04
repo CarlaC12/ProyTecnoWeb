@@ -3,18 +3,21 @@
 @section('titulo', 'Inicio')
 
 @section('contenido')
-    <br> <br>
+    <br>  <h1 style="color: blue " class="text-center font-bold">REGISTRO DE ACTIVIDADES</h1><br>
 
     <div class="container px-6 mb-3">    
         <div class="mt-5">
            <button class="rounded-lg bg-light shadow btn-md ">
-            <a href="{{ route('crearActividad.view') }}" >
-                <span>
-                    <i class="fa fa-plus " style="color: #fa1808"></i>
-                </span>
-                &nbsp;
-                Agregar
-            </a>
+               
+           @can('crearActividad.view')
+           <a href="{{ route('crearActividad.view') }}" >
+            <span>
+                <i class="fa fa-plus " style="color: #fa1808"></i>
+            </span>
+            &nbsp;
+            Agregar
+        </a>
+           @endcan
                 
                </button>
 
@@ -50,7 +53,7 @@
                                  @endphp
                                   @foreach ($encargados as $encargado)
                                     @php
-                                        $encargado2=$encargado->name;
+                                        $encargado2=$encargado->fullname;
                                     @endphp
                                   @endforeach
 
@@ -69,18 +72,15 @@
                                 {{$estado_nombre}}
                             </td>
                             <td>
+                                <a href="{{ route('editarActividad.view',$actividad->id) }}" class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                @can('eliminarActividad')
                                 <form action="{{ route('eliminarActividad',$actividad->id) }}" method="post">
                                     @csrf
                                     @method('delete')
-
-                                    <a href="{{ route('editarActividad.view',$actividad->id) }}" class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
-
-                                    {{-- <a href="" class="btn btn-warning btn-sm fas fa-eye  cursor-pointer"></a> --}}
-
                                     <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
                                         onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"></button>
-
-                                </form>
+                               </form>  
+                                @endcan
 
                             </td>
                         </tr> 

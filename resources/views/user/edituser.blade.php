@@ -57,11 +57,8 @@
       <br>
       @enderror
 
-      <select name="roles" id="select-roles" class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker" onchange="habilitar()"required >
+      <select  name="roles" id="select-roles" readonly  class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker">
         <option value= "{{ $idrole}}">{{$name=DB::table('roles')->where('id', $idrole)->value('name')}}</option>
-            @foreach ($roles as $rol)
-                <option value="{{ $rol->id }}">{{ $rol->name }}</option>
-            @endforeach
          </select>
 
          @error('roles')
